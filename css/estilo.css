@@ -1,0 +1,448 @@
+/* body{
+    background-image: url(../img/ESTUDIO-6.jpg);
+    background-repeat: repeat;
+    background-size: 100% ;
+    color: #FFFFFF;
+} */
+.label-file {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+}
+
+.foto-navbar {
+    height: 60px !important;
+    border-radius: 50% !important;
+    width: 60px;
+    object-fit: cover;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-x: hidden;
+    white-space: nowrap;
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 9999;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav a:hover {
+    color: #818181;
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+label{
+    font-size: 12px !important;
+}
+
+.boton-cargar{
+    background-color: #000000;
+    color:aliceblue;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: solid aliceblue 1px;
+    border-top-color: #000000;
+}
+.boton-cargar:hover{
+    background-color: #464646;
+}
+.border-color{
+    border-color: #929292 !important;
+}
+.btn-dark{
+    background-color: #000000 !important;
+
+}
+.btn-dark:hover{
+    background-color: #464646 !important;
+}
+.centrar-fechas {
+    display: flex;
+    justify-content: center;
+}
+/****** CAMBIAR FOTO DE PERFIL DISEÑO INPUT ******/
+.perfil-img {
+    width: 130px; /* alto y ancho específico para que el círculo sea redondo */
+    height: 125px;
+    border-radius: 50%;
+    overflow: hidden; /* oculta todo el contenido fuera de la caja */
+    position: relative;
+    box-shadow: 2px 3px 13px  black;
+}
+.perfil-img .file {
+    background: #212529b8;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 85;
+    font-size: 10px;
+    text-align: center;
+    padding: 6px 0 12px;
+    cursor: pointer;
+    border: transparent;
+    opacity:0;
+}
+.perfil-img .file:hover{
+    opacity:1 !important;
+    color: #fff;
+}
+.perfil-img .file input {
+    padding: 30px 0 25px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.perfil-img .file_1 {
+    background: #212529b8;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    bottom: 85px;
+    left: 0px;
+    font-size: 10px;
+    text-align: center;
+    padding: 20px 0 9px;
+    cursor: pointer;
+    border: transparent;
+	opacity:1;
+    display: none;
+}
+.perfil-img .file_1 input {
+    padding: 30px 0 25px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.perfil-img .tomar_foto{
+    background: #212529b8;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    bottom: 85px;
+    left: 0px;
+    font-size: 10px;
+    text-align: center;
+    padding: 20px 0 9px;
+    cursor: pointer;
+    border: transparent;
+	opacity:0;
+}
+.perfil-img .tomar_foto:hover {
+	opacity:1;
+    color: #fff;
+}
+/* .perfil-edit{
+    font-size: 40px;
+}
+.perfil-input{
+    background-color: #343a40;
+    height: 39px;
+    width: 200px;
+    font-size: 25px;
+    position: relative;
+    top: 15px;
+    left: 45px;
+} */
+
+
+/*****************************************************/
+
+/******************************/
+/*    SCROLL DISEÑO          */
+
+table thead{
+    /* background-color: #22081c; */
+    /* position: -webkit-sticky; */
+    background-color: rgb(218, 218, 218);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.table-actividades tbody tr:hover{
+    cursor: pointer;
+    background-color: rgba(172, 168, 168, 0.5);
+}
+
+.table-actividades tbody tr td{
+    font-size: 12px !important;
+}
+
+.table-actividades tbody tr th{
+    font-size: 18px !important;
+    padding-top: 3px;
+}
+
+#tabla_alumnos tbody tr{
+    cursor: pointer;
+    border-color: #929292 !important;
+}
+#tabla_alumnos tbody tr:hover{
+    /* background-color: rgba(78, 52, 85, 0.9); */
+    background-color: rgba(243, 238, 238, 0.9) !important;
+    /* border-color: #929292 !important; */
+}
+td{
+  font-size: 12px !important;
+  border-color: #929292 !important;
+}
+th{
+  font-size: 15px !important;
+  border-color: #929292 !important;
+}
+.scroll-modal{
+    height: auto;
+    /* min-height: 200px; */
+    max-height: 300px;
+    overflow-y:auto;
+    overflow-x:auto;  
+}
+
+.scroll-actividades{
+    height: auto;
+    /* min-height: 200px; */
+    max-height: 600px;
+    overflow-y:auto;
+    overflow-x:auto;  
+}
+
+.form-group-check label{
+    position: relative;
+    top: 20px;
+    left: 40px;
+}
+
+.form-group-check input{
+    position: relative;
+    top: 20px;
+}
+
+.scroll{
+  height: auto;
+  /* min-height: 200px; */
+  max-height: 400px;
+  overflow-y:auto;
+  overflow-x:auto;
+}
+/******************************/
+
+.agregar_actividad{
+    position:relative;
+    top:3;
+    left:10;
+    font-size: 20px;
+    cursor: pointer;
+}
+.agregar_actividad:hover{
+  color: rgb(0, 255, 0) !important;
+}
+.eliminar_actividad{
+    position:relative;
+    top:3;
+    left:10;
+    font-size: 20px;
+    cursor: pointer;
+}
+.eliminar_actividad:hover{
+    color: red !important;
+}
+.cerrar_sesion{
+    float: right;
+    font-size: xxx-large;
+    margin-right: 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 9998;
+}
+
+.table-select tbody tr:hover{
+    cursor: pointer;
+    background: #dee2e6;
+}
+
+.modal-login {
+    z-index: 9999;
+    width: 100%;
+    height: 550px;
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,0.8);
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modal-login-r {
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,0.8);
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+}
+
+.exit-card{
+    color: #707070;
+    padding-top: 10px;
+    position: absolute;
+    top: -3%;
+    left: 91%;
+    font-size: xx-large;
+    z-index: 999;
+}
+
+.exit-card:hover{
+    cursor: pointer;
+    color: #707070;
+}
+.custom-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    width: auto !important;
+    height: auto !important;
+}
+input {
+    font-size: 12px !important; /* Tamaño de letra más pequeño */
+    padding: 5px !important; /* Espaciado interno */
+    border: 1px solid #ccc !important; /* Borde del input */
+    border-radius: 4px !important; /* Bordes redondeados */
+}
+select {
+    font-size: 12px !important; /* Tamaño de letra más pequeño */
+    padding: 5px !important; /* Espaciado interno */
+    border: 1px solid #ccc !important; /* Borde del input */
+    border-radius: 4px !important; /* Bordes redondeados */
+} 
+#usuario{
+    width: 50%;
+}
+#clave{
+    width: 50%;
+}
+#validar_agente #documento{
+    width: 50%;
+}
+#validar_agente button{
+    width: 50%;
+}
+.video-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+/* .video-div canvas,.video-div video {
+    position: absolute;
+} */
+
+
+/*********** PARA CELULARES *************/
+@media screen and (max-width: 600px){
+    .centrar-fechas {
+        display: block;
+    }
+    #usuario{
+        width: 80%;
+    }
+    #clave{
+        width: 80%;
+    }
+    .param-busqueda{
+        display: block !important;
+    }
+    .logo{
+        margin-top: 8px;
+        width: 290px !important;
+        height: auto !important;
+    }
+    .custom-flex {
+        display:block;
+    }
+    .perfil-img {
+        position: relative !important;
+        left: 30%;
+    }
+    .center{
+        width: 100% !important;
+        position:static !important;
+        /* left: 50% !important; */
+    }
+    .mt-datos{
+        margin-top: auto !important;
+    }
+    .pt-inscripcion{
+        padding-top: 10px;
+    }
+    .perfil-img .file {
+        opacity: 1 !important;
+    }
+    a[class="tomar_foto"]{
+        display: none ;
+    }
+    .perfil-img .file_1 {
+        display: block !important;
+    }
+}
+.desarrollador{
+    position: relative;
+    bottom: 40px;
+    left: 204px;
+    font-weight:900;
+}
+i {
+    cursor: pointer;
+}
+.mt-datos{
+    margin-top: 3%;
+}
+hr{
+    background-color: #dddddd !important;
+}

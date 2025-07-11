@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de asistencia</title>
+	<link rel="icon" href="img/logotipo.png?1" type="image/x-icon">
+    <!-- BOOTSTRAP 4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- ALERTIFY -->
+	<link rel="stylesheet" href="../libs/alertifyjs/css/alertify.min.css" />
+	<link rel="stylesheet" href="../libs/alertifyjs/css/themes/default.min.css" />
+	<script src="../libs/alertifyjs/alertify.min.js"></script>
+	<script src="../libs/alertifyjs/settings.js"></script>
+    <!-- JS -->
+    <script src="js/funciones.js?{$NO_CACHE}"></script> 
+    <script src="js/login.js?{$NO_CACHE}"></script> 
+    <!-- ESTILOS PARA LOGIN -->
+    <link rel="stylesheet" href="css/estilo.css?{$NO_CACHE}">
+</head>
+<body>
+    {$HEADER}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Registrar agente</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container border border-color rounded mb-5">
+        <div class="row">
+            <div class="col-md-12 p-5">
+                <div class="form-group col-md-3 float-left">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" class="form-control">
+                </div>
+                <div class="form-group col-md-3 float-left">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" class="form-control">
+                </div>                
+                <div class="form-group col-md-3 float-left">
+                    <label for="documento">Documento</label>
+                    <input type="text" id="documento" class="form-control">
+                </div>
+                <div class="form-group col-md-3 float-left">
+                    <label for="foto">Foto</label>
+                    <input type="file" class="custom-file-input" id="foto">
+                    <label class="custom-file-label label-file">Buscar foto...</label>
+                </div>
+                <div class="form-group col-md-3 float-right mt-2 pt-2">
+                    <button class="btn btn-dark btn-lg rounded-pill float-right" onclick="cargar_agente()">Guardar datos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {$FOOTER}
+</body>
+</html>

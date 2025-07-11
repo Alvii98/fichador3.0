@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispositivos</title>
+	<link rel="icon" href="img/logotipo.png?1" type="image/x-icon">
+    <!-- BOOTSTRAP 4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- ALERTIFY -->
+	<link rel="stylesheet" href="../libs/alertifyjs/css/alertify.min.css"/>
+	<link rel="stylesheet" href="../libs/alertifyjs/css/themes/default.min.css"/>
+	<script src="../libs/alertifyjs/alertify.min.js"></script>
+	<script src="../libs/alertifyjs/settings.js"></script>
+    <!-- JS -->
+    <script src="js/funciones.js?{$NO_CACHE}"></script> 
+    <script src="js/login.js?{$NO_CACHE}"></script> 
+    <!-- ESTILOS PARA LOGIN -->
+    <link rel="stylesheet" href="css/estilo.css?{$NO_CACHE}">
+</head>
+<body>
+    {$HEADER}
+    {$MODAL}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Dispositivos</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container border border-color rounded mb-5">
+        <div class="row p-4">
+            <div class="col-md-12 p-3">
+                <table class="table table-bordered text-body table-select">
+                    <thead>
+                        <tr>
+                            <th>Dispositivo</th>
+                            <th>Local</th>
+                            <th>Mensaje</th>
+                            <th>Alta</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$DISPOSITIVOS item=value}
+                        <tr>
+                            <td onclick="modificar_dispositivo(this,'cargar','{$value.id}')">{$value.dispositivo|escape:'utf8_encode'}</td>
+                            <td onclick="modificar_dispositivo(this,'cargar','{$value.id}')">{$value.local|escape:'utf8_encode'}</td>
+                            <td onclick="modificar_dispositivo(this,'cargar','{$value.id}')">{$value.mensaje|escape:'utf8_encode'}</td>
+                            <td onclick="modificar_dispositivo(this,'cargar','{$value.id}')">{$value.alta|date_format:'%d/%m/%Y %H:%M:%S'}</td>
+                            <th style="padding: 0px;padding-left: 25px;">
+                                <i style="font-size: xx-large;" class="bi bi-trash" onclick="eliminar(this,'{$value.id}','dispositivo')"></i>
+                            </th>
+                        </tr>
+                        {foreachelse}
+                        <tr><td colspan="15" class="text-center">No encontramos registros disponibles</td></tr>
+                        {/foreach}
+                        <th colspan="15" id="no_datos" style="display: none;" class="text-center">No encontramos registros disponibles</th>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {$FOOTER}
+</body>
+</html>

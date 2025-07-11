@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda</title>
+	<link rel="icon" href="img/logotipo.png?1" type="image/x-icon">
+    <!-- BOOTSTRAP 4.6 -->
+    <!-- <link rel="stylesheet" href="libs/bootstrap-4.6.1/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="libs/bootstrap-icons/font/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- JQUERY -->
+    <script src="libs/jquery-3.5.1.min.js"></script>
+    <!-- ALERTIFY -->
+	<link rel="stylesheet" href="libs/alertifyjs/css/alertify.min.css" />
+	<link rel="stylesheet" href="libs/alertifyjs/css/themes/default.min.css" />
+	<script src="libs/alertifyjs/alertify.min.js"></script>
+	<script src="libs/alertifyjs/settings.js"></script>
+    <!-- JS -->
+    <script src="js/login.js?{$NO_CACHE}"></script> 
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="css/estilo.css?{$NO_CACHE}">
+</head>
+<body>
+    {$HEADER}
+    <div class="container border border-color rounded mb-4 mt-4 text-body">
+        <div class="row d-flex justify-content-center p-5 mb-4 mt-4">
+            <!-- <div class="modal-overlay"></div>
+            <div id="login" class="modal-login">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content"> -->
+            <div class="col-md-12">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <h4>Iniciar sesi&oacute;n</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <div class="form-group col-md-6">
+                            <label for="Usuario">Usuario</label>
+                            <input type="text" id="usuario" class="form-control" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <div class="form-group col-md-6">
+                            <label for="Contraseña">Contrase&ntilde;a</label>
+                            <input type="password" id="clave" class="form-control">
+                            <label id="resp_login"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center mb-3">
+                        <button onclick="iniciar_sesion()" class="btn btn-dark btn-lg rounded-pill col-md-5">Ingresar</button>
+                    </div>
+                </div>
+                        <!-- <div class="modal-footer"></div>
+                    </div> -->
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+    {$FOOTER}
+</body>
+</html>

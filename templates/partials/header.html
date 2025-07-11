@@ -1,0 +1,18 @@
+<header class="container-fluid border-bottom border-color p-3">
+    <div class="row">
+        <div class="col-md-12">
+            {if $LOGIN}<i class="bi bi-menu-button-wide float-left" onclick="openNav()" style="font-size: xx-large;" role="button"></i>{/if}
+            <img src="img/logo.png" role="button" class="logo" onclick="location.href='./'">
+        </div>
+    </div>
+</header>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.php">Inicio</a>
+    <a href="registrar.php">Registrar agente</a>
+    <a href="cargas.php">Carga diferida</a>
+    <a href="horarios.php">Horarios</a>
+    <a href="dispositivos.php">Dispositivos</a>
+    <a href="#" onclick="iniciar_sesion(true)">Cerrar sesión</a>
+</div>
