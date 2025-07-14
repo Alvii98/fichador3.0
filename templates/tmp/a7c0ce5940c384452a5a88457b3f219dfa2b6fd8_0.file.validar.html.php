@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2025-07-11 21:40:33
-  from 'C:\xampp\htdocs\fichado\templates\validar.html' */
+/* Smarty version 3.1.34-dev-7, created on 2025-07-14 19:48:37
+  from 'C:\xampp\htdocs\fichador3.0\templates\validar.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_687168b160eba5_49909517',
+  'unifunc' => 'content_687542f5a7fb46_41965569',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '11762a1454927b97302cdaf7ff54f99eebe0a73a' => 
+    'a7c0ce5940c384452a5a88457b3f219dfa2b6fd8' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\fichado\\templates\\validar.html',
-      1 => 1752257453,
+      0 => 'C:\\xampp\\htdocs\\fichador3.0\\templates\\validar.html',
+      1 => 1752495348,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_687168b160eba5_49909517 (Smarty_Internal_Template $_smarty_tpl) {
+function content_687542f5a7fb46_41965569 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

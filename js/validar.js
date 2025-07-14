@@ -3,7 +3,7 @@ function validar_identidad() {
     if (documento.trim().length < 6) return alertify.error('Escriba su documento.')
     validarImagen('img/fotos/'+documento+'.png', existe => {
         if (existe) {
-            startVideo()
+            iniciarVideo()
         } else {
             return alertify.error('No encontramos ningun agente con ese documento.')
         }
@@ -24,17 +24,17 @@ function validateNumber(input) {
 // ----------------------------------------------------------------------------------
 const video = document.createElement('video'),
 canvas = document.createElement('canvas')
-pausar = false
+detener = false
+stream = null
 video.autoplay = true
 resizeVideo()
 function resizeVideo() {
-  const screenWidth = window.innerWidth
-  if (screenWidth < 600) {
+  if (window.innerWidth < 600) {
     video.width = 300
     video.height = 400
     canvas.width = 300
     canvas.height = 400
-  } else if (screenWidth < 900) {
+  } else if (window.innerWidth < 900) {
     video.width = 400
     video.height = 500
     canvas.width = 400
@@ -52,25 +52,38 @@ window.addEventListener('load', () => {
     document.querySelector('#traer_canvas').appendChild(canvas) 
 })
 
-async function apagar_camara(){ pausar = true }
+async function apagar_camara(){ detener = true }
 
-async function startVideo() {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: {} }).catch(err => {
-    console.error("Error al acceder a la camara: ", err) })
-    video.srcObject = stream
-    pausar = false
-    // document.querySelector('#reconocimiento_modal').setAttribute('style', 'height:'+window.innerHeight+'px !important')
-    detectFaces()
+async function iniciarVideo() {
+    console.log('Iniciar video')
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true })
+        video.srcObject = stream
+        video.play()
+        detectFaces()
+    } catch (err) {
+        console.error('Error al acceder a la cámara: ', err)
+    }
 }
 
-function detectFaces() {
-    if (pausar == true) {
-        document.querySelector('#reconocimiento_modal').style.display = 'none'
-        video.pause()
-        return false
+async function eliminarVideo() {
+    document.querySelector('#reconocimiento_modal').style.display = 'none'
+    if (stream) {
+        console.log('Eliminar video')
+        let tracks = stream.getTracks()
+        tracks.forEach(track => track.stop())
+        video.srcObject = null
+        stream = null
     }
-    video.addEventListener('play', () => {
+    return false
+}
+
+async function detectFaces() {
+    console.log('Detectando video')
+    if (detener == true) return eliminarVideo()
+    // video.addEventListener('play', () => {
         setInterval(async () => {
+            if (detener == true) return eliminarVideo()
             canvas.getContext('2d').save()
             canvas.getContext('2d').scale(-1, 1)
             canvas.getContext('2d').drawImage(video, -video.width, 0)
@@ -80,15 +93,34 @@ function detectFaces() {
             // const resizedDetections = faceapi.resizeResults(detections, displaySize)
             detections.forEach(detection => {
                 const { x, y, width, height } = detection.detection.box
+                console.log(x, y, width, height)
+                if (window.innerWidth < 600) {
+                    // celular
+                    if ((height > 210 && height < 290) && (width > 160 && width < 220)) {
+                        
+                    }
+                } else if (window.innerWidth < 900) {
+                    // tablet, compu chica 
+                    if ((height > 210 && height < 290) && (width > 160 && width < 220)) {
+                        
+                    }
+                } else {
+                    // pc
+                    if ((height > 210 && height < 290) && (width > 160 && width < 220)) {
+                        
+                    }
+                }
+
+                
             })
             // Detectar cara
             // faceapi.draw.drawDetections(canvas, resizedDetections)
-            if (document.querySelector('#reconocimiento_modal').style.display == 'none') document.querySelector('#reconocimiento_modal').style.display = 'block'
-            detectFaces()
+            if (document.querySelector('#reconocimiento_modal').style.display == 'none' && detener == false) document.querySelector('#reconocimiento_modal').style.display = 'block'
+            // detectFaces()
             // Expresiones
             // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
         }, 100)
-    })
+    // })
 }
 
 Promise.all([

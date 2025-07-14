@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2025-07-11 21:40:33
-  from 'C:\xampp\htdocs\fichado\templates\partials\modal.html' */
+/* Smarty version 3.1.34-dev-7, created on 2025-07-14 19:48:37
+  from 'C:\xampp\htdocs\fichador3.0\templates\partials\modal.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_687168b124d2c9_75353867',
+  'unifunc' => 'content_687542f517c885_20837252',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '31d556f90b1af55cb15c80f8d857508c20b9c51c' => 
+    'de4559d0890d673c99eaabdd410a2259f7bf4e42' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\fichado\\templates\\partials\\modal.html',
-      1 => 1752262445,
+      0 => 'C:\\xampp\\htdocs\\fichador3.0\\templates\\partials\\modal.html',
+      1 => 1752508779,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_687168b124d2c9_75353867 (Smarty_Internal_Template $_smarty_tpl) {
+function content_687542f517c885_20837252 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div id="datos_actividad" class="modal-login" style="display: none;">
     <div class="modal-dialog" role="document">
@@ -94,6 +94,7 @@ function content_687168b124d2c9_75353867 (Smarty_Internal_Template $_smarty_tpl)
                         <h5 style="color: #a7a7a7;text-decoration: underline;">Validando identidad</h5>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center" id="traer_canvas">
+                        <img src="img/face.png" style="width: 300px;height: 300px;position: absolute;top: 10%;">
                     </div>
                     <div class="col-md-12" style="display: none;" id="traer_video">
                     </div>

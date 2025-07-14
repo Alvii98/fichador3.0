@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2025-07-11 21:40:33
-  from 'C:\xampp\htdocs\fichado\templates\partials\header.html' */
+/* Smarty version 3.1.34-dev-7, created on 2025-07-14 19:48:37
+  from 'C:\xampp\htdocs\fichador3.0\templates\partials\header.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_687168b132ceb4_29931033',
+  'unifunc' => 'content_687542f571f1a3_69331433',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '00588aab27764e1fce91d2f78e8546034f54e18f' => 
+    '3555221faa4c79c35078d086546adf6e13d65a90' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\fichado\\templates\\partials\\header.html',
-      1 => 1751476745,
+      0 => 'C:\\xampp\\htdocs\\fichador3.0\\templates\\partials\\header.html',
+      1 => 1752495348,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_687168b132ceb4_29931033 (Smarty_Internal_Template $_smarty_tpl) {
+function content_687542f571f1a3_69331433 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header class="container-fluid border-bottom border-color p-3">
     <div class="row">
         <div class="col-md-12">
