@@ -3,6 +3,7 @@ function validar_identidad() {
     if (documento.trim().length < 6) return alertify.error('Escriba su documento.')
     validarImagen('img/fotos/'+documento+'.png', existe => {
         if (existe) {
+            DOCUMENTO = documento
             iniciarVideo()
         } else {
             return alertify.error('No encontramos ningun agente con ese documento.')
@@ -21,11 +22,32 @@ function validateNumber(input) {
     input.value = input.value.replace(/[^0-9]/g, '')
 }
 
+function validacion() {
+    const datosPost = new FormData()
+    datosPost.append('validar', true)
+    datosPost.append('documento', DOCUMENTO)
+
+    fetch('ajax/ajax_login.php', {
+        method: "POST",
+        body: datosPost
+    })
+    .then(response => response.json())
+    .then(function (json) {
+        if (json.error != '') return alertify.error(json.error)
+        alertify.success(json.resp)
+        location.reload()
+    })
+    .catch(function (error){
+        return alertify.error('Ocurrio un error inesperado, vuelva a intentar.')
+    })
+}
+
 // ----------------------------------------------------------------------------------
 const video = document.createElement('video'),
 canvas = document.createElement('canvas')
 detener = false
 stream = null
+DOCUMENTO = ''
 video.autoplay = true
 resizeVideo()
 function resizeVideo() {
@@ -57,6 +79,7 @@ async function apagar_camara(){ detener = true }
 async function iniciarVideo() {
     console.log('Iniciar video')
     try {
+        detener = false
         stream = await navigator.mediaDevices.getUserMedia({ video: true })
         video.srcObject = stream
         video.play()
@@ -92,8 +115,8 @@ async function detectFaces() {
             // const displaySize = { width: canvas.width, height: canvas.height }
             // const resizedDetections = faceapi.resizeResults(detections, displaySize)
             detections.forEach(detection => {
+                if (detener == true) return eliminarVideo()
                 const { x, y, width, height } = detection.detection.box
-                console.log(x, y, width, height)
                 if (window.innerWidth < 600) {
                     // celular
                     if ((height > 210 && height < 290) && (width > 160 && width < 220)) {
@@ -106,12 +129,12 @@ async function detectFaces() {
                     }
                 } else {
                     // pc
-                    if ((height > 210 && height < 290) && (width > 160 && width < 220)) {
-                        
+                    if ((height > 210 && height < 240) && (width > 160 && width < 190) && (x > 200 && x < 230) && (y > 70 && y < 100)) {
+                        console.log(x, y, width, height)
+                        detener = true
+                        return reconocimiento_facial(canvas.toDataURL('image/png'))
                     }
                 }
-
-                
             })
             // Detectar cara
             // faceapi.draw.drawDetections(canvas, resizedDetections)
@@ -121,6 +144,36 @@ async function detectFaces() {
             // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
         }, 100)
     // })
+}
+
+// PARA HACER EL RECONOCIMIENTO FACIAL DE LAS IMAGENES GUARDADAS
+async function reconocimiento_facial(videoImg = '') {
+    const image1 = new Image()
+    image1.src = 'img/fotos/'+DOCUMENTO+'.png'
+    const image2 = new Image()
+    image2.src = videoImg == '' ? 'img/icono.jpg' : videoImg
+
+    // Detectar los rostros en las imagenes
+    const detections1 = await faceapi.detectAllFaces(image1).withFaceLandmarks().withFaceDescriptors();
+    const detections2 = await faceapi.detectAllFaces(image2).withFaceLandmarks().withFaceDescriptors();
+    if (detections1.length == 0 || detections2.length == 0) {
+        return alertify.error('Error de coincidencia.')
+    }
+    // Comparar los descriptores de los rostros
+    const faceMatcher = new faceapi.FaceMatcher(detections1);
+    const results = detections2.map(descriptor =>
+        faceMatcher.findBestMatch(descriptor.descriptor)
+    )
+    // Mostrar los resultados
+    results.forEach((result, i) => {
+        if (result.label == 'person 1') {
+            eliminarVideo()
+            return validacion()
+        }else{
+            // SIN COINCIDENCIAS
+            return alertify.error('Error de coincidencia.')
+        }
+    })
 }
 
 Promise.all([

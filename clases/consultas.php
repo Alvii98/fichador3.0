@@ -163,11 +163,14 @@ class datos{
         $conn = $instancia->getConnection();
 
         $query = "SELECT r.id,a.agente,a.documento,r.cruce,r.fecha,r.lugar FROM registros r, agentes a 
-        WHERE r.documento = a.documento and r.estado = 0 and r.fecha >= ? and r.fecha <= ? ORDER BY fecha desc";
+        WHERE IF(? = '',r.documento = a.documento, r.documento = ? and a.documento = ?) and 
+        r.estado = 0 and r.fecha >= ? and r.fecha <= ? ORDER BY fecha desc";
     
         $stmt = $conn->prepare($query);
+
+        $documento = empty($_SESSION['DOCUMENTO_REGISTROS']) ? $_SESSION['DOCUMENTO_REGISTROS'] : '';
     
-        $stmt->bind_param("ss", $fecha_inicio,$fecha_final);
+        $stmt->bind_param("sss", $documento,$fecha_inicio,$fecha_final);
     
         $stmt->execute();
         $resp = $stmt->get_result();

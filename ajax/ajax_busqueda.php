@@ -1,6 +1,6 @@
 <?php
 require_once '../clases/consultas.php';
-
+session_start();
 $json = new StdClass();
 
 $json->datos = '';

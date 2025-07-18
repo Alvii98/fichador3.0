@@ -7,6 +7,17 @@ $json->error = '';
 if (isset($_POST['cerrar_sesion'])) {
     session_destroy();
     $json->resp = 'Sesion cerrada.';
+}else if (isset($_POST['validar'])) {
+    if (!empty($_POST['documento'])) {
+        if (file_exists('../img/fotos/'.$_POST['documento'].'.png')) {
+            $_SESSION['DOCUMENTO_REGISTROS'] = $_POST['documento'];
+            $json->resp = 'Valido correctamente.';
+        }else {
+            $json->error = 'Datos incorrectos.';
+        }
+    }else {
+        $json->error = 'No llego el parametro documento.';
+    }
 }else {
     if (isset($_POST['usuario']) && isset($_POST['clave'])) {
         $datos = datos::administracion()[0];
