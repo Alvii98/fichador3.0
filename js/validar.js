@@ -183,3 +183,75 @@ Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./js/face-api/models')
     //   faceapi.nets.faceExpressionNet.loadFromUri('./js/face-api/weights'),
 ]).catch((error) => { console.log(error) })
+
+
+
+
+// OBTENER UBICACION DEL USUARIO
+ubicacionUsuario = 'No permitida'
+// Inicia la ubicacion actual
+const obtenerUbicacion = () => {
+	if (!"geolocation" in navigator) {
+		console.log("Tu navegador no soporta el acceso a la ubicación. Intenta con otro")
+	}
+	idWatcher = navigator.geolocation.watchPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud)
+}
+const onUbicacionConcedida = ubicacion => {
+	const coordenadas = ubicacion.coords
+	// console.log(coordenadas)
+	ubicacion = {latitud : coordenadas.latitude, longitud : coordenadas.longitude}
+	// console.log(ubicacion)
+    ubicacionUsuario = ubicacion
+    validar_lugares(ubicacion)
+    // Detengo la busqueda de la ubicacion
+	navigator.geolocation.clearWatch(idWatcher);
+}
+const onErrorDeUbicacion = err => {
+	console.log("Error obteniendo ubicación: ", err)
+}
+// Parametros para la geolocation
+const opcionesDeSolicitud = {
+	enableHighAccuracy: true, // Alta precision
+	maximumAge: 0, // No queremos cache
+	timeout: 10000 // Esperar solo 5 segundos
+}
+// DESCOMENTAR PARA HABILITAR UBICACION
+obtenerUbicacion()
+
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+    const R = 6371000; // Radio de la Tierra en metros
+    const rad = Math.PI / 180;
+    const dLat = (lat2 - lat1) * rad;
+    const dLon = (lon2 - lon1) * rad;
+
+    const a = Math.sin(dLat / 2) ** 2 +
+              Math.cos(lat1 * rad) * Math.cos(lat2 * rad) *
+              Math.sin(dLon / 2) ** 2;
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distancia en metros
+}
+
+function validar_lugares(ubi) {
+    console.log(ubi)
+    const datosPost = new FormData()
+    datosPost.append('validar_lugares', true)
+
+    fetch('ajax/ajax_login.php', {
+        method: "POST",
+        body: datosPost
+    })
+    .then(response => response.json())
+    .then(function (json) {
+        json.resp.forEach(element => {
+            if (calcularDistancia(element.latitud, element.longitud, ubi.latitud, ubi.longitud) <= 100){
+                console.log('Ubicacion permitida')
+            }else{
+                console.log('Ubicacion no permitida')
+            }
+        })
+    })
+    .catch(function (error){
+        return alertify.error('Ocurrio un error inesperado, vuelva a intentar.')
+    })
+}
