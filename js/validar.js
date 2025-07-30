@@ -132,6 +132,7 @@ async function detectFaces() {
                     if ((height > 210 && height < 240) && (width > 160 && width < 190) && (x > 200 && x < 230) && (y > 70 && y < 100)) {
                         console.log(x, y, width, height)
                         detener = true
+                        // return reconocimiento_facial(canvas.toDataURL('image/png'))
                         return reconocimiento_facial(canvas.toDataURL('image/png'))
                     }
                 }
@@ -183,6 +184,60 @@ Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./js/face-api/models')
     //   faceapi.nets.faceExpressionNet.loadFromUri('./js/face-api/weights'),
 ]).catch((error) => { console.log(error) })
+
+setTimeout(comparar_face('img/fotos/40756445.png'), 2000);
+
+async function comparar_face(videoImg) {
+    fetch('ajax/cargar_imagenes.php')
+    .then(response => response.json())
+    .then(async function (json) {
+        if (json.error != '') return alertify.error(json.error)
+        // const referenceImage = './img/fotos/40756445.png'
+        const referenceImage = new Image()
+        referenceImage.src = videoImg == '' ? 'img/icono.jpg' : videoImg
+        // image2.src = videoImg == '' ? 'img/icono.jpg' : videoImg
+        const imagePaths = json.datos
+        const descriptor = await getReferenceDescriptor(referenceImage)
+        let { match, resp } = await findMatchingImage(descriptor, imagePaths);
+        if (match) {
+            console.log(`Imagen coincidente: ${resp}`);
+        } else {
+            console.log('No se encontró coincidencia.'+resp);
+        }
+    })
+    .catch(function (error){
+        return alertify.error('Ocurrio un error inesperado, vuelva a intentar.')
+    })
+}
+
+async function getReferenceDescriptor(referenceImage) {
+    // const img = await faceapi.fetchImage(referenceImage) // para pasarle ruta directa
+    const detection = await faceapi.detectSingleFace(referenceImage).withFaceLandmarks().withFaceDescriptor()
+    return detection.descriptor
+}
+
+async function findMatchingImage(referenceDescriptor, imagePaths) {
+    const faceMatcher = new faceapi.FaceMatcher(referenceDescriptor)
+    let imagen = '',match = false,resp = ''
+    for (const element of imagePaths) {
+        try {
+            imagen = element.path+element.nombre+element.extension
+            const img = await faceapi.fetchImage(imagen)
+            const detection = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
+            const bestMatch = faceMatcher.findBestMatch(detection.descriptor)
+            if (bestMatch.label !== 'unknown' && bestMatch.distance < 0.6) {
+                match = true
+                resp = element.nombre
+                break;
+            }
+        } catch (error) {
+            console.error(`Error procesando ${imagen}:`, error)
+        }
+    }
+    if (match) return { match: true, resp: resp}
+    else return { match: false, resp: 'No pudimos reconocer el rostro detectado.'}
+}
+
 
 
 
